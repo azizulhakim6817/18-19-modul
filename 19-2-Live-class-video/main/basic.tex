@@ -1,0 +1,257 @@
+1. Boyler Plats 
+2. Project structure 
+3. API end Point Definetions
+4. Payment Detwate / stystem  utility Functions 
+5. create Model files
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+### part-1 #### create Controllers ...................................
+1. Brands
+   1. Brand list 
+
+2. Categories
+   1. Category list
+
+3. Products
+   1. List Product by Category
+   2. List Product bt Remarks
+   3. List Product by Brand
+   4. List Product by Sliders
+   5. By Keywords
+
+4. Product details
+   1. Product details by ID
+
+5. Product Reviews
+   1. List Reviews by Product
+   2. Create updates Product Reviews
+
+6. Product Sliders
+   1. List Product Sliders
+
+7. Product Carts 
+   1. Create updates Carts list
+   2. Read Cart list
+   3. updates cart list 
+   4. Delete/remov Carts list
+
+8. Product Wish
+   1. Create updates Wish list
+   2. Wish list
+   3. Delete Wish list
+
+9. Customers Porfiles
+
+10. invoices
+    1. invoices Create
+    2. invoice list
+
+11. invoices Products
+
+12. SSL Commerz payment getway 
+    1. payment initiate
+    2. Success payment 
+    3. Cancel payment
+    4. Fail payment
+    5. IPN
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 1. IPN maining =>  Instant payment notification (IPN)
+ 2. SSL maining =>  Secure Sockets Layer (SSL)
+
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ ..................E-commerce User Platform Requirements Analysis.....................
+
+(1) Brand .............................
+    1. User should browser Product according to Brand
+    2. Each Brand should have a name, logo, description
+    3. Brand should be displayed product to help users identify products from specific manufacturers
+
+(2) Categories...........................................
+    1. The stystem needs a Category structure to organize product
+    2. Categories should be easy to menage.
+    3. User should browser product according to Category
+
+(3) products .................................................
+    1. Product should have attributes such as name, description, price, stock status.
+    2. User should be able to search, filter, sort, product based on various criteria.
+    3. Easy section for "Popular", "New" ,"Top", "Special" "Regular'
+    4. Must have slider section to featured product 
+    5. Product should have it details & Reviews
+    6. Similar product should listed below the one product details
+
+(4) Product details ...............................
+    1. Details product pages should include comprehensive information, Image, Reviews.
+    2. User should be able to see product availability related product
+
+(5) Product Reviews ........................................
+    1. User should be able to leave Reviews, Rating for product.
+    2. Reviews should display user Name, Rating, comments.
+
+(6) Product Sliders..............................................
+    1. The platform should support dynamic slider to shwocase featured products.
+    2. Administrators should be able to select product to be display in the slider.
+    3. Sliders should be customizable in terms of layout and appearce.
+
+(7) Customers Profiles ........................................
+    1. User should be able to create manage their profile.
+    2. Profiles should include personal information, order, history, saved address.
+    3. The platform should have easy 2 step OTP based login stystem.
+
+(8) Product Carts...............................
+    1. User should be able to add, remove product from their shopping carts.
+    2. Cart should display product details, quantity, prices, total amount.
+    3. User should have the option to save carts for later or proced to checkout.
+
+(9) Porduct Wishs............................................................
+    1. user should be able to create, manage WishList of products.
+    2. WishList should be linked to user profile for easy access
+    3. User should have the option to move items from their WishList to their cart.
+
+(10) invoice.............................................................
+     1. Each Successful transation should generate an invoice.
+     2. invoice should contain details such as order number, date, total amount, billing information.
+     3. User should be able to view, download their invoice from their accounts.
+
+(11) invoice Product.......................................................
+     1. Each invoice should list the products purchased in that transation.
+     2. the list should include product Name, quantity, price, subtotal for eatch items.
+     3. Totals should include subtotal, vat, other cahnrges.
+
+(12) SSL commerce payment getway...........................................
+     1. The platform needs integration with SSL commererce for secure payment.
+     2. User should be able to link their SSL Commerce for seamless transation.
+     3. Payment processing should be encrypted, compliant with security standards.
+
+     
+**** Framwork & Language*********
+     1. Express.js (BackEnd)
+     2. MongoDB Database
+     3. React.js FrontEnd  
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1. forent Key = User_id => file to connect
+
+2. project three tier architecture desing
+   <----user-----React.js----express.js-------Database---->
+
+3. excelldraw desing => mongDB schema model create to vs-code  
+   1. categoriesModel
+   2. barndsModel
+   3. productsModel
+   4. sliderModel
+   5. ReviewsModel
+   6. CartsModel
+   7. detailsModel
+   8. usersModel
+   9. wishesModel
+   10. profileModel
+   11. invoiceModel
+   12. invoiceProductsModel
+
+4. SSL commercez live create Database stystem....10............
+   1. developer =>  test box / send box account create.
+      1. ssl commerercez => developer ssl commererz
+      2. bka.sh 
+      3. developer paypal 
+   2. developer => Database desing => model schema
+   3. developer => B2B simolition create (Postman check )
+   4. developer => my webside  implemente (input)
+   5. Clients => Payment getway provider, ssl-commererz provider is send all business documents 
+   6. Getway provider => verifycation will see => Reviews, UAT, Test => all documents right now Oke
+   7. Getway provider => developer application Reviews, UAT, 
+   7. Getway provider => live user => Password => key => send provider to users.
+   8. developer ==> application test Credential replace => live user Password / key 
+   10. developer => marchen Dashboard IPN setup
+
+5. //SSL Commercez ..................................
+export const STORE_ID = "sdakljf";
+export const STORE_PASSWORD = "ieowio";
+export const CURRENCY = "BDT";
+export const SUCCESS = "";
+export const FAIL_URL = "";
+export const CANCEL_URL = "";
+export const INIT_URL = "";
+
+
+@@@@@@@@@@@@@@@@@ 2nd class live video @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+####<<<>>> schema => Service => controller => routes => api.js => app.js
+
+1. Model create ...................
+2. mongDB create Database and collection 
+3. Postman Definetions
+4. demo data (rabbil sir)
+4. service => Query create 
+
+5.API create 
+   1. create Brand data 
+   2. create category api 
+   3. create product Diff types listing API
+
+
+
+<<<<<<<<<<<<<<< Reast API create all >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. brand Rest API create 
+2.
+
+6. List By Brand Service.....................................
+   1. api "ListByBrandService/:brandID", 
+   2. controller => ....
+       let result = ListByBrandService(res, req) => {
+        return res.json(result);
+       }
+   3. service => porductServece.js =>.................
+      
+
+
+@@@@@@@@@@@@@@@@@ module-19-1 Live class @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1. yarn installl 
+2. nodemon app.js
+
+### importen => aggregation methods 
+#########################################################################
+4. ProductLitByKeyword >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   1. api => "ProductLitByKeyword/:keword"
+   2. service => 
+####################################################################
+5. ProducReviewListByID...........................
+   1. profiel data must be 
+   2. productID must be 
+
+4. user.......................
+   1. Services => userService.js => 
+
+   2 import nodemailer from "nodemailer";
+
+   
+
+####################### LoginSevice #######################################
+   3. Postman => body => josn{"email": "azizulhkim85@gmail.com} 
+      => send message...
+
+   4. commpass controller= users => request message received OTP code.
+
+####################### VerifyLoginSevice #####################################
+3. Postman => body => josn{"email": "azizulhkim85@gmail.com} 
+           => send message...
+####################### create profile #####################################
+1. commpass => data copy => Postman body page (josn)
+2. token add 
+3. after login 
+
+####################### update profile ######################################
+1. commpass => data copy => Postman body page (josn)
+2. token add 
+3. after login 
+
+@@@@@@@@@@@@@@@@@ module-19-2 Live class @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1. ProductLitByRemark  => procuct find 
+1. ProductLitByRemark ID number => 64f8ba608fcc62fe3de37a2e      654dbf2eabda0c85053c9907
+
+3. productID => upsert to 
+  1. data duplicate is not find by method  => updateOne()
+  2. 

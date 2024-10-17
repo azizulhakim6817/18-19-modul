@@ -1,0 +1,19 @@
+1. What is i?
+//List By keyword Servivce.................
+export const ListByKeywordService = async (req) => {
+  try {
+    let keyword = req.params.keyword;
+    let regex = { $regex: keyword, $options: "i" };
+    let SearchParams = [{ title: regex }, { shortDes: regex }];
+    let SearchQuery = { $or: SearchParams };
+    let MatchStage = { $match: SearchQuery };
+
+2. What is as?
+let JoinWithBrandStage = {
+    $lookup: {
+      from: "brands",
+      localField: "brandID",
+      foreignField: "_id",
+      as: "brand",
+    },
+  };

@@ -1,0 +1,960 @@
+####<<< Class-4 >>>> Models create >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. Controllers create 
+   1. BrandModel.js
+   2. CartModel.js
+   3. CategoryModel.js
+   4. FeaturesModel.js
+   5. productModel.js
+   6. productSlider.js
+   7. PorfileModel.js
+   8. ReviewModel.js
+   9. UserModel.js
+   10. WishlistModel.js
+   11. PaymentModel.js
+   12. InvoiceModel.js
+   13. InvoiceProductModel.js
+   14. 
+
+@@@ create model => brand / category / product / slider / productDetails
+//Demo items.......................
+const mongoose = require("mongoose");
+
+const dataSchema = mongoose.Schema(
+  {
+    productID: { trype: mongoose.Types.ObjectId, required: true },
+    userID: { trype: mongoose.Types.ObjectId, required: true },
+    des: { trype: String, required: true },
+    rating: { trype: String, required: true },
+  },
+  { timestamp: true, versionKey: false }
+);
+
+const ReviewsModel = mongoose.model("reviews", dataSchema);
+module.exports = ReviewsModel;
+
+
+####<<< Class-5 >>>> Models create => users/ others >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@@@ create model => user / profiles / carts / wish / review / 
+
+####<<< Class-6 >>>> Models create => invoice/ Payment >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@@@ create model => invoice / invoice products / features / payment
+
+####<<< Class-7 >>>> mongoDB compass category list (demo data input) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+####<<< Class-8 >>>> Controllers // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      1. Products ..........................
+          BrandModel
+          category
+          product
+          productDetails
+          productSlider
+          reviews
+      
+      2. wish list ......................
+      3. cart list ...........................
+      4. user ............................
+      5. features..............................
+      6. invoice.................................
+
+@@@ Servie => Query writing to read..............................
+ 1. Controllers Same Sercices file/folder.js  
+
+ ####<<< Class-9 >>>> create API // product funtion Related API >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ #### 1.  Controllers => Modul see to create Controllers funtion API .........................
+       export const ProductBrandList = async (req, res) => {};
+       export const ProductCategoryList = async (req, res) => {};
+       export const ProductSliderList = async (req, res) => {};
+       export const ProductListByBrand = async (req, res) => {};
+       export const ProductListByCategory = async (req, res) => {};
+       export const ProductListBySimilar = async (req, res) => {};
+       export const ProductListByKeyword = async (req, res) => {};
+       export const ProductProductListByRemark = async (req, res) => {};
+       export const ProductDetails = async (req, res) => {};
+       export const ProductReviewList = async (req, res) => {};
+
+  #### user  => createProductReview...........................................
+       export const CreateProductReview = async (req, res) => {};
+      
+  #### 2. Services folder => ProductServices.js => files ....................
+        const BrandModel = require("../models/BrandModel.js");
+        const CategoryModel = require("../models/CategoryModel.js");
+        const ProductSliderModel = require("../models/ProductSliderModel.js");
+        const ProductModel = require("../models/ProductModel.js");
+        const ProductDetailModel = require("../models/ProductDetailModel.js");
+        const ReviewModel = require("../models/ReviewModel.js");
+
+      ====> export const ProductBrandListService = async () => {};
+
+      ............
+      const BrandModel = require("../models/BrandModel.js");
+      const CategoryModel = require("../models/CategoryModel.js");
+      const ProductSliderModel = require("../models/ProductSliderModel.js");
+      const ProductModel = require("../models/ProductModel.js");
+      const ProductDetailModel = require("../models/ProductDetailModel.js");
+      const ReviewModel = require("../models/ReviewModel.js");
+
+//#### 3. Services => PorductServices.js........................................................
+//Products list items .............
+     const BrandListService = async () => {};
+     const CategoryListService = async () => {};
+     const SliderListService = async () => {};
+     const ListByBrandService = async () => {};
+     const ListByCategoryService = async () => {};
+     const ListByKeywordService = async () => {};
+     const ListByRemarkService = async () => {};
+     const ListBySimilarService = async () => {};
+     const DetailsService = async () => {};
+     const ReviewListService = async () => {};
+
+module.exports = {
+  BrandListService,
+  CategoryListService,
+  SliderListService,
+  ListByBrandService,
+  ListByCategoryService,
+  ListByKeywordService,
+  ListByRemarkService,
+  ListBySimilarService,
+  DetailsService,
+  ReviewListService,
+};
+
+//#### 4. routes => api.js ............................................
+const express = require("express");
+const ProductController = require("../controllers/ProductController.js");
+const router = express.Router();
+
+//product related routes....................
+router.get("/ProductBrandList", ProductController.ProductBrandList);
+router.get("/ProductCategoryList", ProductController.ProductCategoryList);
+router.get("/ProductSliderList", ProductController.ProductSliderList);
+router.get(
+  "/ProductListByBrand/:BrandID",
+  ProductController.ProductListByBrand
+);
+router.get(
+  "/ProductListByCategory/:CategoryID",
+  ProductController.ProductListByCategory
+);
+router.get(
+  "/ProductListBySimilar/:Keyword",
+  ProductController.ProductListBySimilar
+);
+router.get(
+  "/ProductListByKeyword/:Keyowrd",
+  ProductController.ProductListByKeyword
+);
+router.get(
+  "/ProductProductListByRemark/:Remark",
+  ProductController.ProductProductListByRemark
+);
+router.get("/ProductDetails/:ProductID", ProductController.ProductDetails);
+
+router.get(
+  "/ProductReviewList/:ProductID",
+  ProductController.ProductReviewList
+);
+
+module.exports = router;
+
+#### 6. Controllers =>  ProductControllers.js...............................
+const {
+  BrandListService,
+  CategoryListService,
+  SliderListService,
+  ListByBrandService,
+  ListByCategoryService,
+  ListByKeywordService,
+  ListByRemarkService,
+  ListBySimilarService,
+  DetailsService,
+  ReviewListService,
+} = require("../services/ProductServices.js");
+
+//Products list items.................................
+     export const ProductBrandList = async (req, res) => {};
+     export const ProductCategoryList = async (req, res) => {};
+     export const ProductSliderList = async (req, res) => {};
+     export const ProductListByBrand = async (req, res) => {};
+     export const ProductListByCategory = async (req, res) => {};
+     export const ProductListBySimilar = async (req, res) => {};
+     export const ProductListByKeyword = async (req, res) => {};
+     export const ProductListByRemark = async (req, res) => {};
+     export const ProductDetails = async (req, res) => {};
+     export const ProductReviewList = async (req, res) => {};
+
+####<<< Class-10 >>>> BarndList -- categoryList -- SliderList >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. BarndList................
+##################### ProductSliderModel.js #########################
+const mongoose = require("mongoose");
+const dataSchema = mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    des: { type: String, required: true },
+    price: { type: String, required: true },
+    img: { type: String, required: true },
+
+    productID: { type: mongoose.Schema.Types.ObjectId, required: true },
+  },
+  { timestamp: true, versionKey: false }
+);
+
+const ProductSliderModel = mongoose.model("productsliders", dataSchema);
+
+module.exports = ProductSliderModel;
+
+##################### BrandListService.js #########################
+//Products list items ....................................
+//BrandListService....
+const BrandListService = async () => {
+  try {
+    let data = await BrandModel.find();
+    return { status: "success", data: data };
+  } catch (error) {
+    return { status: "success", message: error.toString() };
+  }
+};
+
+##################### BrandList Controllers.js #########################
+//Products list items.................................
+exports.ProductBrandList = async (req, res) => {
+  let result = await BrandListService();
+  res.status(200).json(result);
+};
+
+####<<< Class-11 >>>> BarndList -- categoryList -- SliderList >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//###### 1.  ListByBrandService..>>>>>>>>>>>>>>>>>>>>
+//ListByBrandService.....
+const ListByBrandService = async (req) => {
+  try {
+    let BrandID = new ObjectId(req.params.BrandID); //api path BrandID....(create path => postman)....
+
+    //mongoose aggregate .............
+    let MetchStage = { $match: { brandID: BrandID } }; //api path BrandID ---compass=> porducts => brandID
+
+    let JoinWithBrandStage = {
+      $lookup: {
+        //..(compass => proudct).....
+        from: "brands", //compass => bands collection.......
+        localField: "brandID", //compass => local field => brandID...
+        foreignField: "_id", //compass => barnds => (_id)....
+        as: "brand", //create object{ brands:}....
+      },
+    };
+
+    let JoinWithCategoryStage = {
+      (doller symble must be )lookup: {
+        //(compass => proudct).....
+        from: "categories", //compass => categories collection.......
+        localField: "categoryID", //compass => local field => categoryID
+        foreignField: "_id", //compass => categories => (_id)
+        as: "category", //create object{ categories:}
+      },
+    };
+
+    let data = await ProductModel.aggregate([
+      MetchStage,
+      JoinWithBrandStage,
+      JoinWithCategoryStage,
+    ]);
+    return { status: "success", data: data };
+  } catch (error) {
+    return { status: "fail", data: error }.toString();
+  }
+};
+
+####<<< Class-12 >>>> BarndList -- categoryList -- SliderList >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@@@@@ 1. (doller symble ) lookup: as: "brand",     //create object{ brands:}....
+        => postman => array find => unwind("brand")..................
+        
+"brand": [
+                {
+                    "_id": "64f8751a502e1b80556da142",
+                    "brandName": "Apple",
+                    "brandImg": "https://photo.teamrabbil.com/images/2023/08/15/Phones--Tablets-01-3944.png",
+                    "createdAt": "2023-09-20T17:17:56.893Z",
+                    "updatedAt": "2023-09-20T17:17:56.893Z"
+                }
+            ],
+
+@@@@ 2. change array to object convert => unwind("brand")......................
+       "brand": {
+            "_id": "64f8751a502e1b80556da142",
+             "brandName": "Apple",
+             "brandImg": "https://photo.teamrabbil.com/images/2023/08/15/Phones--Tablets-01-3944.png",
+            "createdAt": "2023-09-20T17:17:56.893Z",
+             "updatedAt": "2023-09-20T17:17:56.893Z"
+           },
+
+
+@@@@ 3. mongoose aggregate method add .......................................
+        let data = await ProductModel.aggregate([
+          MetchStage,
+          JoinWithBrandStage,
+           UnwindBrandStage,
+          UnwindCategoryStage,
+        ]);
+
+
+----------------------------2nd staps-----------------------------------
+let UnwindBrandStage = { $unwind: "$brand" }; //[ ] delete => stay {}
+let UnwindCategoryStage = { $unwind: "$category" }; //[ ] delete => stay {}
+
+//Product title / id delete => stay data finding => postman
+let ProjectionStage = {
+  (doller symble ) project: {
+    "brand._id": 0,
+    "category._id": 0,
+    categoryID: 0,
+    brandID: 0,
+  },
+};
+
+-----> result => postman request finding..................
+"brand": {
+  "brandName": "Apple",
+  "brandImg": "https://photo.teamrabbil.com/images/2023/08/15/Phones--Tablets-01-3944.png",
+  "createdAt": "2023-09-20T17:17:56.893Z",
+  "updatedAt": "2023-09-20T17:17:56.893Z"
+},
+
+#### 3. next staps ####################################################
+   1. listByCategory api .........................
+   2. same to listByBrand
+
+
+===============================Samilar products items=========================
+1. //ListByCategoryService...(2=> listCategory + listBrand +)..
+2. //ListByRemarkService...( " remark " ==> new ObjectId is not include ).....
+
+
+
+####<<< Class-13 >>>> Datails // Similar products API >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@@ 1. SimilarProduct ............................
+      1. ///ListBySimilarService... let limitStage = { limit: 10 };....
+      2. categoryID =>  {{MODULE-18}}/ProductListBySimilar/64f875ed502e1b80556da14d?page=5
+
+@@ 2. DetailsProduct ............................
+    ==> productdetails => productID => copy => {{MODULE-18}}/ProductDetails/654dbf2aabda0c85053c9905
+
+       1. DetailsService.js..
+          -> let ProductID = new ObjectId(req.params.ProductID);
+          -> let MatchStage = { match: { _id: ProductID } };
+
+          let JoinWithDetailsStage = {
+            lookup: {
+              from: "productdetails",
+              localField: "_id",
+              foreignField: "productID",
+              as: "details",
+            },
+          };
+
+         let UnwindDetailsStage = { $unwind: "$details" };
+
+        let ProjectionStage = {
+          project: {
+            "brand._id": 0,
+            "category._id": 0,
+            categoryID: 0,
+            brandID: 0,
+          },
+        };
+
+####<<< Class-14 >>>> ListByKeyword products API >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//ListByKeywordService....
+const ListByKeywordService = async (req) => {
+  try {
+    let SearchRegex = { $regex: req.params.Keyword, $options: "i" }; // i => Apple/apple // Keyword => api add
+    let SearchParams = [{ title: SearchRegex }, { shortDes: SearchRegex }];
+    let SearchQuery = { $or: SearchParams };
+    let MatchStage = { $match: { SearchQuery } };
+
+
+    .............................
+    1. postman url => {{MODULE-18}}/ProductListByKeyword/Apple
+
+####<<< Class-15 >>>> ListByKeyword (mistake/missing) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. Review => Profile => users = Related to Related
+
+####<<< Class-16 >>>> ListByKeyword (mistake/missing) // ReviewList >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     1. ProductReviewList => compass => reviews = proudctID 
+   
+     //ReviewListService..
+const ProductReviewLitService = async (req) => {
+  try {
+    let ProductID = new ObjectId(req.params.ProductID);
+    let MatchStage = { $match: { productID: ProductID } };
+    let JoinprofielState = {
+      $lookup: {
+        from: "profiles",
+        localField: "userID",
+        foreignField: "userID",
+        as: "profile",
+      },
+    };
+
+    let UnwindProfileState = { $unwind: "$profile" };
+
+    let data = await ReviewModel.aggregate([
+      MatchStage,
+      JoinprofielState,
+      UnwindProfileState,
+    ]);
+
+    return { status: "success", data: data };
+  } catch (error) {
+    return { status: "fail", data: error }.toString();
+  }
+};
+
+####<<< Class-17 >>>> ReviewList >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 1.  postman url => {{MODULE-18}}/ProductReviewList/654dbf25abda0c85053c9902
+  
+ let ProjectionStage = {
+  project: { "profile.cus_name": 1, des: 1, rating: 1, _id: 0 },
+};
+
+let data = await ReviewModel.aggregate([
+  MatchStage,
+  JoinprofielState,
+  UnwindProfileState,
+  ProjectionStage,
+]);
+
+
+####<<< Class-18 >>>> Users  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. staps......................................
+host: "mail.teamrabbil.com",
+port: 25,
+secure: false,
+auth: {user: "info@teamrabbil.com", pass: '~sR4[bhaC[Qs'},
+tls: {rejectUnauthorized: false},
+
+
+
+2. staps packages........................................................
+   1. nodemailer =>  npm install nodemailer 
+
+3. staps ........................................................
+const nodemaier = require("nodemailer");
+// user send email to user create function...........................
+const EmailSend = async (EmailTo, EmailText, EmailSubject) => {
+  let transporter = nodemaier.createTransport({
+    host: "mail.teamrabbil.com",
+    port: 25,
+    secure: false,
+    auth: {
+      user: "info@teamrabbil.com",
+      pass: "~sR4[bhaC[Qs",
+      tls: { rejectUnauthorized: false },
+    },
+  });
+
+  let mailOptions = {
+    from: "Mern E-commerce Solution <info@teamrabbil.com>", //user see to show email inbox ......
+    to: EmailTo, //user send ....
+    subject: EmailSubject, /// email subject..........
+    text: EmailText, //email text..details.......
+  };
+
+  return transporter.sendMail(mailOptions); //sendMail => method
+};
+
+module.exports = EmailSend;
+
+####<<< Class-19 >>>> JWT Token => Encode // Decoded  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const jwt = require("jsonwebtoken");
+
+exports.EncodeToken = (email, user_id) => {
+  let KEY = "124-ABC-XAaaay";
+  let EXPIRE = "24h";
+  let PAYLOAD = { email: email, user_id: user_id };
+  return jwt.sign(PAYLOAD, KEY, EXPIRE);
+};
+
+exports.DecodeToken = (token) => {
+  try {
+    let KEY = "124-ABC-XAaaay"; //EncodeToken => KEY access ...
+    return jwt.verify(token, KEY);
+  } catch (error) {
+    return null;
+  }
+};
+
+####<<< Class-20 >>>> Middleware.js create // user Auth Middleware >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  1. user postman request =-> headers // cookie 
+  
+  2. stapes ................................
+  const { DecodeToken } = require("../utility/TokenHelper");
+
+  module.exports = (req, res, next) => {
+    let token = req.headers.token; //request user token 
+    if (!token) {
+      token = req.cookies.token; // Defalt token from Cookie manage...
+    }
+  
+    let decoded = DecodeToken(token); // Middleware token recieved => 
+    if (decoded === null) {
+      return res.status(401).json({ status: "fail", message: "UnAuthorized" });
+    } else {
+      let email = decoded.email;
+      let user_id = decoded.user_id;
+      req.headers.email = email;
+      req.headers.user_id = user_id;
+      next();
+    }
+  };
+
+####<<< Class-21 >>>> userOTP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<
+1. error => SyntaxError: Cannot use import statement outside a module
+
+1. UserOTP => create + email + otp ................................................
+
+const UserOTPService = async (req) => {
+  try {
+    let email = req.params.email;
+    let code = Math.floor(10000 + Math.random() * 900000);
+    let EmailText = `Your Varification code is ${code}`;
+    let EmailSubject = "Email Verification";
+    await EmailSend(email, EmailText, EmailSubject);
+
+    await UserModel.updateOne(
+      { email: email },
+      { $set: { otp: code } },
+      { upsert: true }
+    );
+    return { status: "success", message: "6 Digit OTP has been successfully" };
+  } catch (error) {
+    return { status: "fail", message: "Some went wrong" };
+  }
+};
+
+####<<< Class-22 >>>> userOTP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<
+1. controllers menage to UserLogout => not UserService.js
+
+1. const AuthVerification = require("../middleware/AuthVerification.js");
+
+2. router.get("/UserLogout", AuthVerification, UserController.UserLogout);
+
+ 3. //UserLogout............................................................
+exports.UserLogout = async (req, res) => {
+  let cookieOption = {
+    expires: new Date(Date.now() - 24 * 6060 * 1000),
+    httpOnly: false,
+  };
+  res.cookie("token", "", cookieOption); // Set Cookies With Response
+  return res.status(200).json({ status: "success" });
+};
+
+####<<< Class-23 >>>> Logout // Cookie  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<
+1. User Logout 
+2. cookies 
+
+exports.UserLogout = async (req, res) => {
+  let cookieOption = {
+    expires: new Date(Date.now() - 24 * 6060 * 1000),
+    httpOnly: false,
+  }; 
+  res.cookie("token", "", cookieOption); // Set Cookies With Response
+  return res.status(200).json({ status: "success" });
+};
+
+####<<< Class-24 >>>> Profile (create // update // remove) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+//CreateProfileService........UpdataProfileService...........................
+const SaveProfileService = async (req, res) => {
+  try {
+    let user_id = req.headers.user_id;
+    let reqBody = req.body;
+    reqBody.userID = user_id;
+
+    await ProfileModel.updateOne(
+      { userID: user_id },
+      { set: reqBody },
+      { upsert: true }
+    );
+
+    return { status: "success", message: "Profile Save Success" }; // Consider using res.json
+  } catch (e) {
+    console.error("Error saving profile:", e); // Log the error for debugging
+    return { status: "fail", message: "Something Went Wrong" }; // Consider using res.json
+  }
+};
+
+//CreateProfile.....UpdataProfile......................................................
+exports.CreateProfile = async (req, res) => {
+  let result = await SaveProfileService(req);
+  return res.status(200).json(result);
+};
+///UpdataProfile...........CreateProfile..
+exports.UpdataProfile = async (req, res) => {
+  let result = await SaveProfileService(req);
+  return res.status(200).json(result);
+};
+
+####<<< Class-25 >>>>Wish List create / update / remove >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. problem => app.js => app.use.................
+
+   => app.use(express.json({ limit: "50mb" }));
+   => app.use(express.urlencoded({ limit: "50mb" }));
+
+
+2. wish List SaveWishList // RemoveWishList............................
+
+//CreateWishListService...........................
+const SaveWishListService = async (req) => {
+  try {
+    let user_id = req.headers.user_id;
+    let reqBody = req.body;
+    reqBody.userID = user_id;
+
+    await WishModel.updateOne(reqBody, { set: reqBody }, { upsert: true });
+    return { status: "success", message: "Wish List Save Success" };
+  } catch (e) {
+    return { status: "fail", message: "Something Went Wrong !" };
+  }
+};
+
+//RemoveWishListService..................................
+const RemoveWishListService = async (req) => {
+  try {
+    let user_id = req.headers.user_id;
+    let reqBody = req.body;
+    reqBody.userID = user_id;
+
+    await WishModel.deleteOne(reqBody);
+    return { status: "success", message: "Wish List Remove Successfully." };
+  } catch (error) {
+    return { status: "fail", message: "Something Went Wrong!" };
+  }
+};
+
+####<<< Class-26 >>>> WishLish Select >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. 1st staps...........................................
+//WishListService....................................
+const WishListService = async (req) => {
+  try {
+    let user_id = new ObjectID(req.headers.user_id);
+    let matchStage = { match: { userID: user_id } };
+
+    let data = await WishModel.aggregate([matchStage]);
+    return { status: "success", data: data };
+  } catch (error) {
+    return { status: "fail", message: "Something went wrong!" };
+  }
+};
+
+2. 2nd stape.................................
+
+####<<< Class-27 >>>> Cart List all  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+####<<< Class-28 >>>> Invoice all  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+### 1. packages install >>>>>>>>>>>>>>>>>>>>>>
+1. packages => npm install axios  
+2. packages => npm install form-data  
+
+@@@ form-data ===>> SSL-comerz payment getway send user data.
+@@@ axios     ===>> SSL-commerz Backent (BBC to BBC) create Payment request 
+
+###<< part-1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+### 1. ..........................................
+1. collection = products
+2. localField = carts(collection) into => productID 
+3. foreignField = products(collection) into => -id 
+4. as = collection = product
+
+### 2. ..........................................
+let unwindStage = {$unwind: "$product}
+
+### 3. ......................................
+let CartProduct = await CartModel.aggregate([unwindStage, ])
+
+###<< part-2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+//CreateInvoiceService......................................
+const CreateInvoiceService = async (req) => {
+  let user_id = new ObjectID(req.headers.user_id);
+  let cus_email = req.headers.email;
+
+  //..............Step-1 : Calculate Total Payable & Vat ..................................
+  let matchStage = { $match: { userID: user_id } };
+
+  let joinStageProduct = {
+    $lookup: {
+      from: "products",
+      localField: "productID", //carts => productID
+      foreignField: "_id", // product -> _id
+      as: "product",
+    },
+  };
+
+  let unwindStage = { $unwind: "$product" };
+
+  let cartProduct = await CartModel.aggregate([
+    matchStage,
+    joinStageProduct,
+    unwindStage,
+  ]);
+
+  return { status: "succeess", data: cartProduct };
+};
+
+###<< part-3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+//CreateInvoiceService......................................
+const CreateInvoiceService = async (req) => {
+  let user_id = new ObjectID(req.headers.user_id);
+  let cus_email = req.headers.email;
+
+  let matchStage = { $match: { userID: user_id } };
+
+  let joinStageProduct = {
+    $lookup: {
+      from: "products",
+      localField: "productID", //carts => productID
+      foreignField: "_id", // product -> _id
+      as: "product",
+    },
+  };
+
+  let unwindStage = { $unwind: "$product" };
+
+  let cartProduct = await CartModel.aggregate([
+    matchStage,
+    joinStageProduct,
+    unwindStage,
+  ]);
+
+  //count...............................
+  let totalAmount = 0;
+  cartProduct.forEach((element) => {
+    let price;
+    if (element["product"]["discoun"]) {
+      price = parseFloat(element["product"]["discountPrice"]);
+    } else {
+      price = parseFloat(element["product"]["price"]);
+    }
+
+    totalAmount += parseFloat(element["qty"]) * price;
+  });
+
+  return { status: "succeess", data: cartProduct };
+};
+
+//@@@@ postman result.....................................
+ {
+  "status": "succeess",
+  "data": 24000
+}
+
+###<< part-4 >>>>>>>>>>> Final code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+const CreateInvoiceService = async (req) => {
+  let user_id = new ObjectID(req.headers.user_id);
+  let cus_email = req.headers.email;
+  let matchStage = { $match: { userID: user_id } };
+
+  let joinStageProduct = {
+    $lookup: {
+      from: "products",
+      localField: "productID", //carts => productID
+      foreignField: "_id", // product -> _id
+      as: "product",
+    },
+  };
+
+  let unwindStage = { $unwind: "$product" };
+
+  let cartProduct = await CartModel.aggregate([
+    matchStage,
+    joinStageProduct,
+    unwindStage,
+  ]);
+
+  //count...............................
+  let totalAmount = 0;
+  cartProduct.forEach((element) => {
+    let price;
+    if (element["product"]["discoun"]) {
+      price = parseFloat(element["product"]["discountPrice"]);
+    } else {
+      price = parseFloat(element["product"]["price"]);
+    }
+
+    totalAmount += parseFloat(element["qty"]) * price;
+  });
+
+  let vat = totalAmount * 0.05; //5% vat
+  let payable = totalAmount + vat;
+
+  return { status: "succeess", data: payable };
+};
+
+..............Step-2 : Prepare Datails & shipping details ............
+
+###<< part-1 >>>>>>>>>>> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+let matchStage = { match: { userID: user_id } };
+let Profile = await ProfileModel.aggregate([matchStage]);
+
+return { status: "succeess", data: Profile };
+
+###<< part-2 >>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>
+const CartModel = require("../models/CartModel");
+const mongoose = require("mongoose");
+const ProfileModel = require("../models/ProfielModel");
+const InvoiceModel = require("../models/InvoiceModel");
+const InvoiceProductModel = require("../models/InvoiceProductModel");
+const ObjectID = mongoose.Types.ObjectId;
+
+//CreateInvoiceService......................................
+const CreateInvoiceService = async (req) => {
+  let user_id = new ObjectID(req.headers.user_id);
+  let cus_email = req.headers.email;
+
+  //..............Step-1 : Calculate Total Payable & Vat ...............
+  let matchStage = { $match: { userID: user_id } };
+
+  let joinStageProduct = {
+    $lookup: {
+      from: "products",
+      localField: "productID", //carts => productID
+      foreignField: "_id", // product -> _id
+      as: "product",
+    },
+  };
+
+  let unwindStage = { $unwind: "$product" };
+
+  let cartProduct = await CartModel.aggregate([
+    matchStage,
+    joinStageProduct,
+    unwindStage,
+  ]);
+
+  //count...............................
+  let totalAmount = 0;
+  cartProduct.forEach((element) => {
+    let price;
+    if (element["product"]["discoun"]) {
+      price = parseFloat(element["product"]["discountPrice"]);
+    } else {
+      price = parseFloat(element["product"]["price"]);
+    }
+
+    totalAmount += parseFloat(element["qty"]) * price;
+  });
+
+  let vat = totalAmount * 0.05; //5% vat
+  let payable = totalAmount + vat;
+
+  //..............Step-2 : Prepare Datails & shipping details .................
+
+  let Profile = await ProfileModel.aggregate([matchStage]);
+  let cus_details = `Name: ${Profile[0]["cus_name"]}, Email:${Profile[0]["cus_email"]}, Adress:${Profile[0]["cus_add"]}, Phone:${Profile[0]["cus_phone"]}`;
+
+  let ship_details = `Name: ${Profile[0]["ship_name"]}, City:${Profile[0]["ship_city"]}, Adress:${Profile[0]["ship_add"]}, Phone:${Profile[0]["ship_phone"]}`;
+
+  //..............Step-: 3 Transation & Other's ID...................... .
+  let tran_id = Math.floor(10000000 + Math.random() * 10000000);
+  let val_id = 0;
+  let delivery_status = "pending";
+  let payment_status = "pending";
+
+  //..............Step-: 4 Create invoice..................... ........
+  let createInvoice = await InvoiceModel.create({
+    userID: user_id,
+    payable: payable,
+    cus_details: cus_details,
+    ship_details: ship_details,
+    tran_id: tran_id,
+    val_id: val_id,
+    delivery_status: delivery_status,
+    payment_status: payment_status,
+    total: totalAmount,
+    vat: vat,
+  });
+
+  //..............Step-: 5 Create Invoice Product..................... ........
+
+  let invoice_id = createInvoice["_id"];
+
+  cartProduct.forEach(async (element) => {
+    await InvoiceProductModel.create({
+      userID: user_id,
+      productID: element["productID"],
+      invoiceID: invoice_id,
+      qty: element["qty"],
+      price: element["product"]["discount"]
+        ? element["product"]["discountPrice"]
+        : element["product"]["price"],
+      color: element["color"],
+      size: element["size"],
+    });
+  });
+
+  //..............Step-: 6 Remove Carts..................... ........
+  await CartModel.deleteMany({ userID: user_id });
+
+  //..............Step-: 7 prepare SSL Payment..................... ..
+
+  return { status: "succeess", data: invoice_id };
+};
+
+
+####<<< Class-28 >>>> SSL-commerz payment method  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+####<<< Class-29 >>>> SSL-commerz payment method  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+####<<< Class-30  >>>> SSL-commerz payment method  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+1.  let trxID = req.params.trxID
+
+2. compass invoince -<> InvoiceModel => tran_id
+
+3. compass invoince -> InvoiceModel => npayment_status: pending
+
+4. compass PaymentSitting ..................................................
+ 
+success_url
+"http://localhost:8000/api/v1/PaymentSuccess"
+fail_url
+"http://localhost:8000/api/v1/PaymentFail"
+cancel_url
+"http://localhost:8000/api/v1/PaymentCancel"
+ipn_url
+"http://localhost:8000/api/v1/PaymentIPN"
+init_url
+"https://sandbox.sslcommerz.com/gwprocess/v4/api.php"
+
+5. Google Sceach......................................................................
+   =>postman req =->  {{MODULE-18}}/CreateInvoice
+
+{
+ "name": "Citytouch",
+  "type": "internetbanking",
+   "logo": "https://sandbox.sslcommerz.com/gwprocess/v4/image/gw/citytouch.png",
+  "gw": "city",
+  "r_flag": "1",
+  "redirectGatewayURL": "https://sandbox.sslcommerz.com/gwprocess/v4/bankgw/indexhtmlOTP.php?mamount=1869.00&ssl_id=241006538230v7kH64C1g7HRN1&Q=REDIRECT&SESSIONKEY=233B525FAE17EAFB503F22CB2F2E840D&tran_type=success&cardname=city"},
+
+6. 
+
+
+####<<< Class-31  >>>> paymentIPN  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. paymentIPN..............
+
+
+####<<< Class-32  >>>> invoice list and product list >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. invoice list and product list.......
+
+
+####<<< Class-33  >>>> Feature List // Create Review >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. features list ....................
+   => 

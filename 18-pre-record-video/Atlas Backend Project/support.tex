@@ -1,0 +1,135 @@
+####<<< Class-22 >>>> userOTP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<
+1. .count("total) => console.log(total)  => count is not a function
+
+2. controllers.js file ...............................
+
+exports.VerifyLogin = async (req, res) => {
+    let result = await VerifyOTPSevice(req);
+    return res.status(200).json(result);
+  };
+
+---------------------- 1nd problems => erro ase? -----------------------------
+
+const VerifyOTPSevice = async (req) => {
+  let email = req.params.email;
+  console.log(email);
+
+  let otp = req.params.otp;
+  console.log(otp);
+
+  let total = await UserModel.find({ email: email, otp: otp }).count("total");
+  console.log(total);
+
+  return { status: "success", message: total };
+};
+
+
+2.   let total = await UserModel.countDocuments({ email: email, otp: otp });
+     => result postman ............
+     {
+    "status": "success",
+    "message": 1
+     }
+
+
+---------------------- 2nd problems => erro ase? -----------------------------
+
+const VerifyOTPSevice = async (req) => {
+  try {
+    let email = req.params.email;
+    let otp = req.params.otp;
+
+    // User Count
+    let total = await UserModel.find({ email: email, otp: otp }).count("total");
+    if (total.lenght === 1) {
+      // User ID Read
+      let user_id = await UserModel.find({ email: email, otp: otp });
+
+      // User Token Create
+      let token = EncodeToken(email, user_id[0]["_id"].toString());
+
+      // OTP Code Update To 0
+      await UserModel.updateOne({ email: email }, { set: { otp: "0" } }); //set doller symble must be...
+
+      return { status: "success", message: "Valid OTP", token: token };
+    } else {
+      return { status: "fail", message: "Invalid OTP" };
+    }
+  } catch (e) {
+    return { status: "fail", message: "Invalid OTP" };
+  }
+};
+
+----------- 3nd problems =>  -----------------------------
+
+1....6060* ken?......................................
+expires: new Date(Date.now() + 24 * 6060 * 1000),
+
+2..........res.cookie ==> ......................................
+
+exports.VerifyLogin = async (req, res) => {
+  let result = await VerifyOTPSevice(req);
+  if (result["status"] === "success") {
+    // Cookies Option // postman(req) =>  "status": "success",
+    let cookieOption = {
+      expires: new Date(Date.now() + 24 * 6060 * 1000),
+      httpOnly: false,
+    };
+    // Set Cookies With Response
+    res.cookie("token", result["token"], cookieOption); 
+
+    return res.status(200).json(result);
+  } else {
+    return res.status(200).json(result);
+  }
+};
+
+####<<< Class-23 >>>> userOTP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<
+3. postman request ............................hyna...........
+//UserLogout............................................................
+exports.UserLogout = async (req, res) => {
+  let cookieOption = {
+    expires: new Date(Date.now() - 24 * 6060 * 1000),
+    httpOnly: false,
+  };
+  res.cookie("token", "", cookieOption); // Set Cookies With Response
+  return res.status(200).json({ status: "success" });
+};
+
+####<<< Class-24 >>>> userOTP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<
+
+1. undefined ase? ///////////////////////////////////////
+body-parser deprecated undefined extended: provide extended option app.js:37:17
+Server is running at http://localhost:8000
+db is connected
+
+=> >>> code app.js ...............
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
+
+1 What is set:true?  /////////////////////////////////////////////////////
+
+//Update Service list .............................................
+const UpdateCartListService = async (req) => {
+  try {
+    let user_id = req.headers.user_id;
+    let cartID = req.params.cartID;
+    let reqBody = req.body;
+    await CartModel.updateOne(
+      { _id: cartID, userID: user_id },
+      { set: reqBody }
+    );
+    return { status: "success", message: "Cart List Update Success" };
+  } catch (e) {
+    return { status: "fail", message: "Something Went Wrong !" };
+  }
+};
+
+
+####<<< Class-28 >>>> userOTP >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//..............Step-: 7 prepare SSL Payment..................... .................................
+1. ...................what?.....................
+let from = new FormData();
+form.append("store_id", PaymentSittingModel[0]["store_id"]);
+form.append("total_amount	", payable.toString());
+
